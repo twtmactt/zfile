@@ -1,144 +1,155 @@
-# Z-File
+<div align="center">
+    <a href="https://zfile.vip">
+        <img src="./img/logo-zfile.png" width="100" alt="ZFile" />
+    </a>
+    <p>ZFile 是面向个人和小团队的在线网盘程序，可统一管理多种存储，让文件浏览、预览和分享更简单。</p>
+    <p>
+        <a href="https://github.com/zfile-dev/zfile/releases"><img alt="最新版本" src="https://shields.io/github/v/release/zfile-dev/zfile?style=flat-square" /></a>
+        <a href="https://github.com/zfile-dev/zfile/releases"><img alt="下载次数" src="https://shields.io/github/downloads/zfile-dev/zfile/total?style=flat-square" /></a>
+        <a href="https://github.com/zfile-dev/zfile/commits"><img alt="最近提交" src="https://shields.io/github/last-commit/zfile-dev/zfile.svg?style=flat-square" /></a>
+        <a href="https://github.com/zfile-dev/zfile/issues"><img alt="待处理问题" src="https://shields.io/github/issues/zfile-dev/zfile?style=flat-square" /></a>
+        <a href="https://github.com/zfile-dev/zfile/stargazers"><img alt="GitHub Stars" src="https://shields.io/github/stars/zfile-dev/zfile?style=flat-square" /></a>
+        <a href="https://gitcode.com/zfile-dev/zfile"><img alt="GitCode Stars" src="https://gitcode.com/zfile-dev/zfile/star/badge.svg" /></a>
+    </p>
+    <p>
+        <a href="https://zfile.vip">官网</a> ·
+        <a href="https://docs.zfile.vip">文档</a> ·
+        <a href="https://demo.zfile.vip">在线演示</a>
+    </p>
+</div>
 
-![https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square](https://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=flat-square)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/70b793267f7941d58cbd93f50c9a8e0a)](https://www.codacy.com/manual/zhaojun1998/zfile?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=zhaojun1998/zfile&amp;utm_campaign=Badge_Grade)
-![https://img.shields.io/badge/springboot-2.0.6-orange.svg?style=flat-square](https://img.shields.io/badge/springboot-2.0.6-yellow.svg?longCache=true&style=popout-square)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/zhaojun1998/zfile.svg?style=flat-square)
+> **版本说明：** ZFile 5.x 已发布，开源版与捐赠版已合并为同一版本。后续会剥离捐赠版代码，并将代码开源到本仓库。更新内容请查看 [更新日志](https://docs.zfile.vip/changelog/)。
 
-此项目是一个在线文件目录的程序, 支持各种对象存储和本地存储, 使用定位是个人放常用工具下载, 或做公共的文件库. 不会向多账户方向开发.
+## 主要特性
 
-前端基于 [h5ai](https://larsjung.de/h5ai/) 的原有功能使用 Vue 重新开发了一遍. 后端采用 SpringBoot, 数据库采用内嵌数据库.
-
-预览地址: [https://zfile.jun6.net](https://zfile.jun6.net)
-
-文档地址: [http://docs.zhaojun.im/zfile](http://docs.zhaojun.im/zfile)
-
-## 系统特色
-
-* 内存缓存 (免安装)
-* 内存数据库 (免安装)
-* 个性化配置
-* 自定义目录的 readme 说明文件
-* 自定义 JS, CSS
-* 文件夹密码
-* 支持在线浏览文本文件, 视频, 图片, 音乐. (支持 FLV 和 HLS)
-* 文件/目录二维码
-* 缓存动态开启, ~~缓存自动刷新 (v2.2 及以前版本支持)~~
-* ~~全局搜索 (v2.2 及以前版本支持)~~
-* 同时挂载多个存储策略
-* 支持 阿里云 OSS, FTP, 华为云 OBS, 本地存储, MINIO, OneDrive 国际/家庭/个人版, OneDrive 世纪互联版, 七牛云 KODO, 腾讯云 COS, 又拍云 USS.
+- 支持统一管理 S3、OneDrive、SharePoint、Google Drive、多吉云、又拍云、本地存储、FTP、SFTP 等存储源。
+- 支持图片、音视频、文本、PDF、Office 和 OBJ（3D）等文件在线预览。
+- 支持生成文件直链和短链，短链可设置有效期。
+- 支持响应式布局，可在手机、平板和电脑等设备上使用。
+- 支持多用户，可为指定用户分配存储源或目录。
+- 支持常用快捷键：`Ctrl + A` 全选、`Ctrl + 左键` 多选、`Shift + 左键` 范围选择、`Esc` 取消全选等。
+- 支持通过 Docker 或 Docker Compose 部署（AMD64、ARM64）。
+- 支持限速下载（捐赠版）。
+- 支持限制指定用户可查看、上传的文件类型（捐赠版）。
 
 ## 快速开始
 
-安装依赖环境:
+使用一键安装脚本：
 
 ```bash
-# CentOS系统
-yum install -y java-1.8.0-openjdk unzip
+curl -fsSL https://docs.zfile.vip/install.sh -o install.sh
+chmod +x install.sh
+./install.sh
 ```
 
-```bash
-# Debian 9 / Ubuntu 14+
-apt update
-apt install -y openjdk-8-jre-headless unzip
-```
+更多安装方式请参考 [安装文档](https://docs.zfile.vip/install/)。使用中遇到问题，可通过 [GitHub Issues](https://github.com/zfile-dev/zfile/issues) 反馈。
 
-```bash
-# Debian 10 (Buster) 系统
-apt update && apt install -y apt-transport-https software-properties-common ca-certificates dirmngr gnupg
-wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
-add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-apt update && apt install -y adoptopenjdk-8-hotspot-jre
-```
+## 功能预览
 
+<table>
+    <tr>
+        <td width="50%" align="center">
+            <strong>文件列表</strong><br /><br />
+            <img src="./img/file-list.gif" alt="文件列表" />
+        </td>
+        <td width="50%" align="center">
+            <strong>画廊模式</strong><br /><br />
+            <img src="./img/gallery.png" alt="画廊模式" />
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" align="center">
+            <strong>视频预览</strong><br /><br />
+            <img src="./img/preview-video.png" alt="视频预览" />
+        </td>
+        <td width="50%" align="center">
+            <strong>音频预览</strong><br /><br />
+            <img src="./img/preview-audio.png" width="220" alt="音频预览" />
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" align="center">
+            <strong>文本预览</strong><br /><br />
+            <img src="./img/preview-text.png" alt="文本预览" />
+        </td>
+        <td width="50%" align="center">
+            <strong>PDF 预览</strong><br /><br />
+            <img src="./img/preview-pdf.png" alt="PDF 预览" />
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" align="center">
+            <strong>Office 预览</strong><br /><br />
+            <img src="./img/preview-office.png" alt="Office 预览" />
+        </td>
+        <td width="50%" align="center">
+            <strong>3D 文件预览</strong><br /><br />
+            <img src="./img/preview-3d.png" alt="3D 文件预览" />
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" align="center">
+            <strong>生成直链</strong><br /><br />
+            <img src="./img/generate-link.png" alt="生成直链" />
+        </td>
+        <td width="50%" align="center">
+            <strong>页面设置</strong><br /><br />
+            <img src="./img/page-setting.png" alt="页面设置" />
+        </td>
+    </tr>
+</table>
 
-> 如为更新程序, 则请先执行 `~/zfile/bin/stop.sh && rm -rf ~/zfile` 清理旧程序. 首次安装请忽略此选项.
+<details>
+    <summary><strong>查看后台管理截图（5 张）</strong></summary>
+    <br />
+    <table>
+        <tr>
+            <td width="50%" align="center">
+                <strong>后台登录</strong><br /><br />
+                <img src="./img/login.png" alt="后台登录" />
+            </td>
+            <td width="50%" align="center">
+                <strong>存储源列表</strong><br /><br />
+                <img src="./img/storage-list.png" alt="存储源列表" />
+            </td>
+        </tr>
+        <tr>
+            <td width="50%" align="center">
+                <strong>添加本地存储</strong><br /><br />
+                <img src="./img/storage-edit-local.png" alt="添加本地存储" />
+            </td>
+            <td width="50%" align="center">
+                <strong>用户管理</strong><br /><br />
+                <img src="./img/user-edit.png" alt="用户管理" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <strong>显示设置</strong><br /><br />
+                <img src="./img/view-setting.png" width="50%" alt="显示设置" />
+            </td>
+        </tr>
+    </table>
+</details>
 
+## 开源许可
 
-下载项目:
-
-```bash
-cd ~
-wget https://c.jun6.net/ZFILE/zfile-release.war
-mkdir zfile && unzip zfile-release.war -d zfile && rm -rf zfile-release.war
-chmod +x zfile/bin/*.sh
-```
-
-> 下载指定版本可以将 `zfile-release.war` 改为 `zfile-x.x.war`，如 `zfile-2.2.war`。
-
-程序的目录结构为:
-```
-├── zfile
-    ├── META-INF
-    ├── WEB-INF
-    └── bin
-        ├── start.sh    # 启动脚本
-        └── stop.sh     # 停止脚本
-        ├── restart.sh  # 重启脚本
-```
-
-启动项目:
-
-```bash
- ~/zfile/bin/start.sh
-```
-
-篇幅有限, 更详细的安装教程及介绍请参考: [ZFile 文档](http://zhaojun.im/zfile-install)
-
-访问地址:
-
-用户前台: http://127.0.0.1:8080/#/main
-
-初始安装: http://127.0.0.1:8080/#/install
-
-管理后台: http://127.0.0.1:8080/#/admin
-
-
-## 预览
-
-![前台首页](https://cdn.jun6.net/2020/04/19/d590d2bde13bb.png)
-![后台设置-驱动器设置](https://cdn.jun6.net/2020/04/19/d58fc2debcce8.png)
-![后台设置-驱动器设置](https://cdn.jun6.net/2020/04/19/0f321e47fc18c.png)
-![后台设置-显示设置](https://cdn.jun6.net/2020/04/19/6d7c300b89671.png)
-
-## 常见问题
-
-
-### 默认路径
-
-默认 H2 数据库文件地址: `~/.zfile/db/`, `~` 表示用户目录
-
-windows 为 `C:/Users/用户名/`
-
-linux 为 `/home/用户名/`, root 用户为 `/root/`
-
-> 2.3 及以后版本路径为 `~/.zfile-new/db/`
-
-### 文档文件和加密文件
-
-- 目录文档显示文件名为 `readme.md`
-- 目录需要密码访问, 添加文件 `password.txt` (无法拦截此文件被下载, 但可以改名文件)
-
-## 开发计划
-
-- [x] API 支持 [点击查看文档](https://github.com/zhaojun1998/zfile/blob/master/API.md)
-- [x] 更方便的部署方式
-- [x] 布局优化 - 自定义操作按钮 (现为右键实现)
-- [x] 后台优化 - 设置按照其功能进行分离
-- [x] 体验优化 - 支持前后端分离部署
-- [x] 体验优化 - 文本预览更换 vscode 同款编辑器 monaco editor
-- [x] 新功能 - Docker 支持
-- [x] 架构调整 - 支持多存储策略
-- [ ] 新功能 - 后台支持上传、编辑、删除等操作
-- [ ] 新功能 - WebDav 支持
-- [ ] 新功能 - 离线下载 (aria2)
-- [ ] 体验优化 - 忽略文件列表 (正则表达式)
-- [ ] 体验优化 - 自定义支持预览的文件后缀 (正则表达式)
-- [ ] 体验优化 - 一键安装脚本
+本项目基于 [MIT License](./LICENSE) 开源。
 
 ## 支持作者
 
 如果本项目对你有帮助，请作者喝杯咖啡吧。
 
-<img src="http://cdn.jun6.net/alipay.png" width="200" height="312">
-<img src="http://cdn.jun6.net/wechat.png" width="222" height="300">
+<div align="center">
+    <img src="https://cdn.jun6.net/2021/03/27/152704e91f13d.png" width="320" alt="赞助作者" />
+</div>
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=zfile%2Fzfile%2Czfile-dev%2Fzfile&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=zfile-dev/zfile&type=date&theme=dark&legend=top-left&sealed_token=k__IUaTSa8umgKy_2j9KTqj9jvOHRCfbGjG-arR4SRc2r84LDlzlRkt-7Slk8dwkNna42CdIaeDPA79zWTJJawi1uoTzRYGa7XpL42x0pW8BfxzSLYskzy065yPr1VUKCJMJKPjBvJB376AsHUpz6s46HKoYSLgoChquT4tQYzonqNVgqBoX9gwI1b3N" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=zfile-dev/zfile&type=date&legend=top-left&sealed_token=k__IUaTSa8umgKy_2j9KTqj9jvOHRCfbGjG-arR4SRc2r84LDlzlRkt-7Slk8dwkNna42CdIaeDPA79zWTJJawi1uoTzRYGa7XpL42x0pW8BfxzSLYskzy065yPr1VUKCJMJKPjBvJB376AsHUpz6s46HKoYSLgoChquT4tQYzonqNVgqBoX9gwI1b3N" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=zfile-dev/zfile&type=date&legend=top-left&sealed_token=k__IUaTSa8umgKy_2j9KTqj9jvOHRCfbGjG-arR4SRc2r84LDlzlRkt-7Slk8dwkNna42CdIaeDPA79zWTJJawi1uoTzRYGa7XpL42x0pW8BfxzSLYskzy065yPr1VUKCJMJKPjBvJB376AsHUpz6s46HKoYSLgoChquT4tQYzonqNVgqBoX9gwI1b3N" />
+ </picture>
+</a>
